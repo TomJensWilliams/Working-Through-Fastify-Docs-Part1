@@ -16,9 +16,16 @@ const fastify = require('fastify')({
 });
 */
 
+// Declare a route
 fastify.get('/', function(request, reply) {
   reply.send({ hello: 'world' });
 });
+
+/* OR
+fastify.get('/', async (request, reply) => {
+  return { hello: world };
+});
+*/
 
 // Run the server!
 fastify.listen({ port: 3000}, function(err, address) {
@@ -28,3 +35,14 @@ fastify.listen({ port: 3000}, function(err, address) {
   }
   // Server is now listening on ${address}
 });
+
+/* OR
+const start = async () => {
+  try {
+    await fastify.listen({ port: 3000 });
+  } catch (err) {
+    fastify.log.error(err);
+    process.exit(1);
+  }
+};
+*/
